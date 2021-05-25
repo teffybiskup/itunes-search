@@ -1,0 +1,20 @@
+{
+  "name": "itunes-search-middleware",
+  "version": "1.0.0",
+  "description": "App developed with Express.js to interact with iTunes Search API",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "keywords": [
+    "express",
+    "vuejs",
+    "typescript",
+    "itunes"
+  ],
+  "author": "Stefany Biskup",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
