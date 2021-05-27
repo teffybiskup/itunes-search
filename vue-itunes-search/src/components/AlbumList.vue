@@ -1,0 +1,36 @@
+<template lang="pug">
+.album.py-5.bg-light
+  .container
+    .row.row-cols-1.row-cols-sm-2.row-cols-md-3.g-3
+      .col
+        .card.shadow-sm
+          svg.bd-placeholder-img.card-img-top(
+            width="100%"
+            height="225"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-label="Placeholder: Thumbnail"
+            preserveAspectRatio="xMidYMid slice"
+            focusable="false"
+          )
+            title Placeholder
+            rect(
+              width="100%"
+              height="100%"
+              fill="#55595c"
+            )
+            text(
+              x="50%"
+              y="50%"
+              fill="#eceeef"
+              dy=".3em"
+            ) Thumbnail
+          .card-body
+            p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+</template>
+
+<script>
+import { Vue } from "vue-class-component";
+
+export default class AlbumList extends Vue {}
+</script>

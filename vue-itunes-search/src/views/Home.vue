@@ -1,0 +1,61 @@
+<template lang="pug">
+.home
+  meta(charset="utf-8")
+  meta(name="viewport", content="width=device-width,initial-scale=1")
+  meta(name="description", content)
+  meta(name="author", content="Mark Otto, Jacob Thornton, and Bootstrap contributors")
+  meta(name="generator", content="Hugo 0.83.1")
+  title iTunes Search API
+  link(rel="canonical", href="https://getbootstrap.com/docs/5.0/examples/album/")
+  link(href="../assets/dist/css/bootstrap.min.css", rel="stylesheet")
+  header
+    .navbar.navbar-dark.bg-dark.shadow-sm.d-flex
+      .navbar-brand
+        strong Album
+      .col-sm-12
+        search-box
+  main
+    section.py-5.text-center.container
+      .row.py-lg-5
+        .col-lg-6.col-md-8.mx-auto
+          h1.fw-light iTunes Search API
+          p.lead.text-muted Please, use the search box above to get data.
+
+      album-list
+  footer.bg-dark.text-muted.py-5
+    .container
+      p.float-end.mb-1
+        a.link-light(href="#") Back to top
+      p.mb-1 © Bootstrap
+</template>
+
+<script lang="ts">
+import { Options, Vue } from "vue-class-component";
+import AlbumList from "@/components/AlbumList.vue";
+import SearchBox from "@/components/SearchBox.vue";
+
+@Options({
+  components: {
+    AlbumList,
+    SearchBox,
+  },
+})
+export default class Home extends Vue {}
+</script>
+
+<style lang="scss">
+.navbar {
+  .navbar-brand,
+  .col-sm-12 {
+    flex: 1;
+  }
+
+  .col-sm-12 {
+    margin-right: 1%;
+
+    .form-control {
+      margin-right: 1%;
+    }
+  }
+}
+</style>
