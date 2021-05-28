@@ -13,7 +13,7 @@
       .navbar-brand
         strong Album
       .col-sm-12
-        search-box
+        search-box(@search-request="assignAlbums")
   main
     section.py-5.text-center.container
       .row.py-lg-5
@@ -21,7 +21,8 @@
           h1.fw-light iTunes Search API
           p.lead.text-muted Please, use the search box above to get data.
 
-      album-list
+      album-list(:albums="albums")
+
   footer.bg-dark.text-muted.py-5
     .container
       p.float-end.mb-1
@@ -31,6 +32,10 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import { mapActions, mapGetters } from "vuex";
+import { ALBUMS } from "@/store/getter-types";
+import { ASSIGN_ALBUMS } from "@/store/action-types";
+import { Album } from "@/types/model";
 import AlbumList from "@/components/AlbumList.vue";
 import SearchBox from "@/components/SearchBox.vue";
 
@@ -39,8 +44,16 @@ import SearchBox from "@/components/SearchBox.vue";
     AlbumList,
     SearchBox,
   },
+  computed: {
+    ...mapGetters([ALBUMS]),
+  },
+  methods: {
+    ...mapActions({ assignAlbums: ASSIGN_ALBUMS }),
+  },
 })
-export default class Home extends Vue {}
+export default class iTunesSearch extends Vue {
+  [ALBUMS]: Album[];
+}
 </script>
 
 <style lang="scss">
