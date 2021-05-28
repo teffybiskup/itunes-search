@@ -1,11 +1,15 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "../views/Home.vue";
+import iTunesSearch from "../views/iTunesSearch.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
+    path: "/itunes",
+    name: "iTunesSearch",
+    component: iTunesSearch,
+  },
+  {
     path: "/",
-    name: "Home",
-    component: Home,
+    redirect: '/itunes'
   },
 ];
 
