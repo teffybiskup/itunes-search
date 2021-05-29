@@ -1,17 +1,5 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import iTunesMediaSearch from "../views/iTunesMediaSearch.vue";
-
-const routes: Array<RouteRecordRaw> = [
-  {
-    path: "/itunes",
-    name: "iTunesMediaSearch",
-    component: iTunesMediaSearch,
-  },
-  {
-    path: "/",
-    redirect: "/itunes",
-  },
-];
+import { createRouter, createWebHistory } from "vue-router";
+import routes from "./routes";
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
