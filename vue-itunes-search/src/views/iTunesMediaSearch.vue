@@ -14,7 +14,8 @@
         strong Album
       .col-sm-12
         search-box(
-          @search-request="assignAlbums"
+          placeholder="Search artist"
+          @search-request="searchTerm"
           @clear-previous-results="clearPreviousResults"
         )
   main
@@ -26,8 +27,10 @@
 
       search-box(
         @search-request="filterDisplayedInfo"
-        :show-submit-button="false"
+        placeholder="Filter media"
+        :allow-special-characters="true"
         :has-sync-filter="true"
+        :show-submit-button="false"
         :should-clear-input="false"
         :should-clear-previous-results="false"
       )
@@ -41,15 +44,16 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
-import { mapActions, mapGetters } from "vuex";
-import { ALBUMS } from "@/store/getter-types";
-import { ASSIGN_ALBUMS } from "@/store/action-types";
-import { Album } from "@/types/model";
 import AlbumList from "@/components/AlbumList.vue";
 import SearchBox from "@/components/SearchBox.vue";
+import { Options, Vue } from "vue-class-component";
+import { mapGetters } from "vuex";
+import { loadMediaData } from "@/router/guards";
+import { ALBUMS } from "@/store/getter-types";
+import { Album } from "@/types/model";
 
 @Options({
+  name: "iTunesMediaSearch",
   components: {
     AlbumList,
     SearchBox,
@@ -57,9 +61,7 @@ import SearchBox from "@/components/SearchBox.vue";
   computed: {
     ...mapGetters([ALBUMS]),
   },
-  methods: {
-    ...mapActions([ASSIGN_ALBUMS]),
-  },
+  beforeRouteUpdate: loadMediaData,
 })
 export default class iTunesMediaSearch extends Vue {
   [ALBUMS]: Album[];
@@ -71,6 +73,10 @@ export default class iTunesMediaSearch extends Vue {
         .toLowerCase()
         .includes(inputSearch.toLowerCase());
     });
+  }
+
+  searchTerm(inputSearch: string): void {
+    this.$router.push({ params: { term: inputSearch } });
   }
 
   clearPreviousResults(): void {
