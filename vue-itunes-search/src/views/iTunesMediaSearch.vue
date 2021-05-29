@@ -5,7 +5,7 @@
   meta(name="description", content)
   meta(name="author", content="Mark Otto, Jacob Thornton, and Bootstrap contributors")
   meta(name="generator", content="Hugo 0.83.1")
-  title iTunes Search API
+  title iTunes Media Search
   link(rel="canonical", href="https://getbootstrap.com/docs/5.0/examples/album/")
   link(href="../assets/dist/css/bootstrap.min.css", rel="stylesheet")
   header
@@ -13,15 +13,25 @@
       .navbar-brand
         strong Album
       .col-sm-12
-        search-box(@search-request="assignAlbums")
+        search-box(
+          @search-request="assignAlbums"
+          @clear-previous-results="clearPreviousResults"
+        )
   main
     section.py-5.text-center.container
       .row.py-lg-5
         .col-lg-6.col-md-8.mx-auto
-          h1.fw-light iTunes Search API
+          h1.fw-light iTunes Media Search
           p.lead.text-muted Please, use the search box above to get data.
 
-      album-list(:albums="albums")
+      search-box(
+        @search-request="filterDisplayedInfo"
+        :show-submit-button="false"
+        :has-sync-filter="true"
+        :should-clear-input="false"
+        :should-clear-previous-results="false"
+      )
+      album-list(:albums="getAlbums")
 
   footer.bg-dark.text-muted.py-5
     .container
@@ -48,11 +58,28 @@ import SearchBox from "@/components/SearchBox.vue";
     ...mapGetters([ALBUMS]),
   },
   methods: {
-    ...mapActions({ assignAlbums: ASSIGN_ALBUMS }),
+    ...mapActions([ASSIGN_ALBUMS]),
   },
 })
-export default class iTunesSearch extends Vue {
+export default class iTunesMediaSearch extends Vue {
   [ALBUMS]: Album[];
+  filteredAlbums: Album[] | null = null;
+
+  filterDisplayedInfo(inputSearch: string): void {
+    this.filteredAlbums = this.albums.filter((album: Album) => {
+      return album.collectionName
+        .toLowerCase()
+        .includes(inputSearch.toLowerCase());
+    });
+  }
+
+  clearPreviousResults(): void {
+    this.filteredAlbums = null;
+  }
+
+  get getAlbums(): Album[] {
+    return this.filteredAlbums || this.albums;
+  }
 }
 </script>
 
