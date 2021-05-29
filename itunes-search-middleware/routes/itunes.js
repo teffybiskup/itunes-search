@@ -12,7 +12,7 @@ router.get("/:query", async function (req, res, next) {
   json.results = json.results
     .reduce((acc, currentObject) => {
       if(!acc.find(object => object['collectionName'] === currentObject['collectionName'])) {
-        acc.push(currentValue);
+        acc.push(currentObject);
       }
       return acc;
     }, [])
