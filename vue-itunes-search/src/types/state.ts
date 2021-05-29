@@ -1,5 +1,5 @@
 import { Album } from "./model";
 
-export interface iTunesSearchState {
+export interface iTunesMediaSearchState {
   albums: Album[];
 }

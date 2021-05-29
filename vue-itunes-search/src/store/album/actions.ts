@@ -1,12 +1,12 @@
 import { ActionContext } from "vuex";
 import { iTunesService } from "@/services/itunes";
-import { iTunesSearchState } from "@/types";
+import { iTunesMediaSearchState } from "@/types";
 import { ASSIGN_ALBUMS } from "../action-types";
 import { SET_ALBUMS } from "../mutation-types";
 
 const actions = {
   [ASSIGN_ALBUMS]: async (
-    { commit }: ActionContext<iTunesSearchState, iTunesSearchState>,
+    { commit }: ActionContext<iTunesMediaSearchState, iTunesMediaSearchState>,
     inputSearch: string
   ): Promise<void> => {
     const response = await iTunesService.getAlbums(inputSearch);

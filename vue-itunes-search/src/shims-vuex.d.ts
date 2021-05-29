@@ -1,9 +1,9 @@
 import { ComponentCustomProperties } from "vue";
 import { Store } from "vuex";
-import { iTunesSearchState } from "./types";
+import { iTunesMediaSearchState } from "./types";
 
 declare module "@vue/runtime-core" {
   interface ComponentCustomProperties {
-    $store: Store<iTunesSearchState>;
+    $store: Store<iTunesMediaSearchState>;
   }
 }
