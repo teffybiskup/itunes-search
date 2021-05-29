@@ -1,13 +1,14 @@
 <template lang="pug">
 form.form-group.d-flex(
-  @keydown.enter.prevent="searchAlbums(); shouldClearPreviousResults && clearPreviousResults()"
-  @submit.prevent="searchAlbums(); shouldClearPreviousResults && clearPreviousResults()"
-  v-on="hasSyncFilter ? { keyup: searchAlbums } : {}"
+  @keypress="isAlphaNum"
+  @keydown.enter.prevent="searchMedia(); shouldClearPreviousResults && clearPreviousResults()"
+  @submit.prevent="searchMedia(); shouldClearPreviousResults && clearPreviousResults()"
+  v-on="hasSyncFilter ? { keyup: searchMedia } : {}"
 )
   input.form-control(
     v-model="inputSearch"
+    :placeholder="placeholder"
     type="search"
-    placeholder="Search..."
     aria-label="Search"
   )
   button.btn.btn-dark(
@@ -32,15 +33,24 @@ library.add(faSearch);
   },
 })
 export default class SearchBox extends Vue {
-  @Prop({ default: true }) readonly showSubmitButton!: boolean;
+  @Prop({ required: true }) readonly placeholder!: string;
+  @Prop({ default: false }) readonly allowSpecialCharacters!: boolean;
   @Prop({ default: false }) readonly hasSyncFilter!: boolean;
+  @Prop({ default: true }) readonly showSubmitButton!: boolean;
   @Prop({ default: true }) readonly shouldClearInput!: boolean;
   @Prop({ default: true }) readonly shouldClearPreviousResults!: boolean;
 
   inputSearch = "";
 
-  searchAlbums(): void {
-    this.$emit("search-request", this.inputSearch);
+  isAlphaNum(e: KeyboardEvent): boolean | void {
+    if (/[^a-zA-Z0-9 ]/gi.test(e.key) && !this.allowSpecialCharacters)
+      e.preventDefault();
+    false;
+  }
+
+  searchMedia(): void {
+    if (this.inputSearch || !this.shouldClearInput)
+      this.$emit("search-request", this.inputSearch);
     this.inputSearch = this.shouldClearInput ? "" : this.inputSearch;
   }
 
