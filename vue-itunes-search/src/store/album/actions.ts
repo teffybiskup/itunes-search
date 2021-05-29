@@ -7,9 +7,9 @@ import { SET_ALBUMS } from "../mutation-types";
 const actions = {
   [ASSIGN_ALBUMS]: async (
     { commit }: ActionContext<iTunesMediaSearchState, iTunesMediaSearchState>,
-    inputSearch: string
+    term: string
   ): Promise<void> => {
-    const response = await iTunesService.getAlbums(inputSearch);
+    const response = await iTunesService.getAlbums(term);
     commit(SET_ALBUMS, response);
   },
 };
