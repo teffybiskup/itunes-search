@@ -1,4 +1,3 @@
-import { ComponentCustomProperties } from "vue";
 import { Store } from "vuex";
 import { iTunesMediaSearchState } from "./types";
 
