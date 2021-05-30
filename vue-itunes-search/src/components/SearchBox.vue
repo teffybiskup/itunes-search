@@ -1,8 +1,8 @@
 <template lang="pug">
-form.form-group.d-flex(
+form.search-box.form-group.d-flex(
   @keypress="isAlphaNum"
   @keydown.enter.prevent="searchMedia(); shouldClearPreviousResults && clearPreviousResults()"
-  @submit.prevent="searchMedia(); shouldClearPreviousResults && clearPreviousResults()"
+  @submit.prevent="searchMedia(); clearPreviousResults()"
   v-on="hasSyncFilter ? { keyup: searchMedia } : {}"
 )
   input.form-control(
@@ -33,19 +33,19 @@ library.add(faSearch);
   },
 })
 export default class SearchBox extends Vue {
-  @Prop({ required: true }) readonly placeholder!: string;
-  @Prop({ default: false }) readonly allowSpecialCharacters!: boolean;
-  @Prop({ default: false }) readonly hasSyncFilter!: boolean;
-  @Prop({ default: true }) readonly showSubmitButton!: boolean;
-  @Prop({ default: true }) readonly shouldClearInput!: boolean;
-  @Prop({ default: true }) readonly shouldClearPreviousResults!: boolean;
+  @Prop({ required: true }) placeholder!: string;
+  @Prop({ default: false }) allowSpecialCharacters!: boolean;
+  @Prop({ default: false }) hasSyncFilter!: boolean;
+  @Prop({ default: true }) showSubmitButton!: boolean;
+  @Prop({ default: true }) shouldClearInput!: boolean;
+  @Prop({ default: true }) shouldClearPreviousResults!: boolean;
 
   inputSearch = "";
 
   isAlphaNum(e: KeyboardEvent): boolean | void {
-    if (/[^a-zA-Z0-9 ]/gi.test(e.key) && !this.allowSpecialCharacters)
-      e.preventDefault();
-    false;
+    if (/[A-z0-9.\'!\- ]/gi.test(e.key) && !this.allowSpecialCharacters)
+      return true;
+    e.preventDefault();
   }
 
   searchMedia(): void {
