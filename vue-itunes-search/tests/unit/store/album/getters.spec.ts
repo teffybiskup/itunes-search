@@ -1,7 +1,7 @@
 import getters from "@/store/album/getters";
 import { expect } from "chai";
 import { ALBUMS } from "@/store/getter-types";
-import { Album } from "@/types/model";
+import { Album } from "@/types";
 import { albumsMock } from "../../../mocks/albums";
 import { iTunesMediaSearchStateMock } from "../../../mocks/state";
 

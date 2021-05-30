@@ -16,7 +16,7 @@
 <script lang="ts">
 import { Vue } from "vue-class-component";
 import { Prop } from "vue-property-decorator";
-import { Album } from "@/types/model";
+import { Album } from "@/types";
 
 export default class AlbumList extends Vue {
   @Prop({ default: [] }) albums!: Album[];

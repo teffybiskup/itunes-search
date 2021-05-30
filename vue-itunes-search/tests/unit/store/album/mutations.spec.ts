@@ -2,7 +2,7 @@ import mutations from "@/store/album/mutations";
 import { expect } from "chai";
 import { ALBUMS } from "@/store/getter-types";
 import { SET_ALBUMS } from "@/store/mutation-types";
-import { Album } from "@/types/model";
+import { Album } from "@/types";
 import { albumsMock } from "../../../mocks/albums";
 import { iTunesMediaSearchStateMock } from "../../../mocks/state";
 
