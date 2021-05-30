@@ -5,7 +5,7 @@ import { expect } from "chai";
 import { ActionTree, GetterTree, Store } from "vuex";
 import { mount } from "@vue/test-utils";
 import { ALBUMS } from "@/store/getter-types";
-import { iTunesMediaSearchState } from "@/types";
+import { iTunesMediaSearchState, Album } from "@/types";
 import { albumsMock } from "../../mocks/albums";
 
 describe("iTunesMediaSearch.vue", () => {
@@ -84,8 +84,12 @@ describe("iTunesMediaSearch.vue", () => {
       });
 
       wrapper.vm.filterDisplayedInfo("Slow");
-      expect(wrapper.vm.filteredAlbums.length).not.to.equals(albumsMock.length);
-      expect(wrapper.vm.filteredAlbums[0]).to.deep.equals(albumsMock[2]);
+      expect((wrapper.vm.filteredAlbums as Album[]).length).not.to.equals(
+        albumsMock.length
+      );
+      expect((wrapper.vm.filteredAlbums as Album[])[0]).to.deep.equals(
+        albumsMock[2]
+      );
     });
 
     it("Should clear previous results properly", () => {
@@ -98,29 +102,33 @@ describe("iTunesMediaSearch.vue", () => {
       });
 
       wrapper.vm.filterDisplayedInfo("Speaker");
-      expect(wrapper.vm.filteredAlbums.length).not.to.equals(albumsMock.length);
-      expect(wrapper.vm.filteredAlbums[0]).to.deep.equals(albumsMock[3]);
+      expect((wrapper.vm.filteredAlbums as Album[]).length).not.to.equals(
+        albumsMock.length
+      );
+      expect((wrapper.vm.filteredAlbums as Album[])[0]).to.deep.equals(
+        albumsMock[3]
+      );
 
       wrapper.vm.clearPreviousResults();
-      expect(wrapper.vm.filteredAlbums.length).to.equals(0);
+      expect(wrapper.vm.filteredAlbums).to.equals(null);
     });
 
     it("Should send term searched to the route in order to get media info", () => {
-      const pushSpy = sinon.spy();
+      const replaceSpy = sinon.spy();
 
       const wrapper = mount(iTunesMediaSearch, {
         global: {
           mocks: {
             $store: store,
             $router: {
-              push: pushSpy,
+              replace: replaceSpy,
             },
           },
         },
       });
 
       wrapper.vm.searchTerm("Weezer");
-      expect(pushSpy.calledOnce).to.be.true;
+      expect(replaceSpy.calledOnce).to.be.true;
     });
   });
 });
