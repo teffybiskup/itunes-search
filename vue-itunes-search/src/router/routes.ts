@@ -11,6 +11,7 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: ":term",
+        name: "Media",
         component: iTunesMediaSearch,
         beforeEnter: loadMediaData,
       },
