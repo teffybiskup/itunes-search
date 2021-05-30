@@ -4,7 +4,7 @@ import actions from "@/store/album/actions";
 import getters from "@/store/album/getters";
 import mutations from "@/store/album/mutations";
 
-const itunes: Module<iTunesMediaSearchState, iTunesMediaSearchState> = {
+const iTunes: Module<iTunesMediaSearchState, iTunesMediaSearchState> = {
   state: {
     albums: [],
   },
@@ -13,4 +13,4 @@ const itunes: Module<iTunesMediaSearchState, iTunesMediaSearchState> = {
   actions,
 };
 
-export default itunes;
+export default iTunes;

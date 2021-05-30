@@ -1,5 +1,5 @@
 import { ActionContext } from "vuex";
-import { iTunesService } from "@/services/itunes";
+import { iTunesService } from "@/services/iTunes";
 import { iTunesMediaSearchState } from "@/types";
 import { ASSIGN_ALBUMS } from "../action-types";
 import { SET_ALBUMS } from "../mutation-types";
