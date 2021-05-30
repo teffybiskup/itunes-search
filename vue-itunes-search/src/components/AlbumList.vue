@@ -1,11 +1,12 @@
 <template lang="pug">
-.album.py-5.bg-light
+.list.py-5.bg-light
   .container
     .row.row-cols-3.row-cols-sm-3.row-cols-md-4.row-cols-lg-6.g-3
+      span.no-results(v-if="albums && !albums.length") No Results
       .col(
-          v-for="(album, index) in albums"
-          :key="index"
-        )
+        v-for="(album, index) in albums"
+        :key="index"
+      )
         .card.shadow-sm
           img(:src="album.artworkUrl100")
           .card-body
@@ -18,7 +19,7 @@ import { Prop } from "vue-property-decorator";
 import { Album } from "@/types/model";
 
 export default class AlbumList extends Vue {
-  @Prop() readonly albums!: Album[];
+  @Prop() albums!: Album[];
 }
 </script>
 
@@ -28,5 +29,9 @@ export default class AlbumList extends Vue {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.no-results {
+  width: 100%;
 }
 </style>
