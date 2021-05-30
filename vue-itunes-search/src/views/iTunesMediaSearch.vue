@@ -23,7 +23,6 @@
       .row.py-lg-5
         .col-lg-6.col-md-8.mx-auto
           h1.fw-light iTunes Media Search
-          p.lead.text-muted Please, use the search box above to get data.
 
       search-box(
         @search-request="filterDisplayedInfo"
