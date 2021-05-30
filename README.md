@@ -63,6 +63,7 @@ Lints and fixes files.
 
 * Fix Vue Property Decorator warnings \
 ![image](https://user-images.githubusercontent.com/33550545/120116803-3418e500-c160-11eb-824f-8e3ea73af20c.png)
+* Test unit coverage with Istanbul
 * Search for other types of media besides artist albums
 * Option to open and view more result information in a new tab or modal component
 * Deploy app to a cloud container platform
