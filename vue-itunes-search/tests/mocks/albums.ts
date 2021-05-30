@@ -1,5 +1,4 @@
-import { Album } from "@/types/model";
-import { ResponseData } from "@/types/response";
+import { Album, ResponseData } from "@/types";
 
 export const albumsMock: Album[] = [
   {

@@ -50,7 +50,7 @@ import { Options, Vue } from "vue-class-component";
 import { mapGetters } from "vuex";
 import { loadMediaData } from "@/router/guards";
 import { ALBUMS } from "@/store/getter-types";
-import { Album } from "@/types/model";
+import { Album } from "@/types";
 
 @Options({
   name: "iTunesMediaSearch",
@@ -65,7 +65,7 @@ import { Album } from "@/types/model";
 })
 export default class iTunesMediaSearch extends Vue {
   [ALBUMS]: Album[];
-  filteredAlbums: Album[] = [];
+  filteredAlbums: Album[] | null = null;
 
   filterDisplayedInfo(inputSearch: string): void {
     this.filteredAlbums = this.albums.filter((album: Album) => {
@@ -75,12 +75,15 @@ export default class iTunesMediaSearch extends Vue {
     });
   }
 
-  searchTerm(inputSearch: string): void {
-    this.$router.push({ params: { term: inputSearch } });
+  searchTerm(term: string): void {
+    this.$router.replace({
+      name: "Media",
+      params: { term },
+    });
   }
 
   clearPreviousResults(): void {
-    this.filteredAlbums = [];
+    this.filteredAlbums = null;
   }
 
   get getAlbums(): Album[] {

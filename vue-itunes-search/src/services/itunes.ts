@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { Album } from "@/types/model";
+import { Album } from "@/types";
 
 export class iTunesService {
   public static async getAlbums(
