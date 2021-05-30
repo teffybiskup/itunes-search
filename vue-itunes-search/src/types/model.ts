@@ -1,12 +1,15 @@
 export interface Album {
-  collectionName: string;
-  collectionViewUrl: string;
-  artworkUrl100: string;
-  trackCount: string;
+  artistId: number;
   artistName: string;
   artistViewUrl: string;
+  artworkUrl100: string;
+  collectionId: number;
+  collectionName: string;
+  collectionType: string;
+  collectionViewUrl: string;
   copyright: string;
   country: string;
-  releaseDate: string;
   primaryGenreName: string;
+  releaseDate: string;
+  trackCount: number;
 }

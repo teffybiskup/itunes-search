@@ -1,1 +1,1 @@
-export const SET_ALBUMS = 'setAlbums';
+export const SET_ALBUMS = "setAlbums";
