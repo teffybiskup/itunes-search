@@ -19,7 +19,7 @@
           @clear-previous-results="clearPreviousResults"
         )
   main
-    section.py-5.text-center.container
+    section.media-info.py-5.text-center.container
       .row.py-lg-5
         .col-lg-6.col-md-8.mx-auto
           h1.fw-light iTunes Media Search
@@ -40,7 +40,7 @@
     .container
       p.float-end.mb-1
         a.link-light(href="#") Back to top
-      p.mb-1 © Bootstrap
+      p.mb-1 © Based on Bootstrap's Album template
 </template>
 
 <script lang="ts">
@@ -65,7 +65,7 @@ import { Album } from "@/types/model";
 })
 export default class iTunesMediaSearch extends Vue {
   [ALBUMS]: Album[];
-  filteredAlbums: Album[] | null = null;
+  filteredAlbums: Album[] = [];
 
   filterDisplayedInfo(inputSearch: string): void {
     this.filteredAlbums = this.albums.filter((album: Album) => {
@@ -80,7 +80,7 @@ export default class iTunesMediaSearch extends Vue {
   }
 
   clearPreviousResults(): void {
-    this.filteredAlbums = null;
+    this.filteredAlbums = [];
   }
 
   get getAlbums(): Album[] {
