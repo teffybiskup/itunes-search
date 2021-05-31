@@ -68,5 +68,6 @@ Lints and fixes files.
 * Search for other types of media besides artist albums
 * Option to open and view more result information in a new tab or modal component
 * Deploy app to a cloud container platform
+* Spinner/Loader component
 * Pagination
 * Bookmarks
