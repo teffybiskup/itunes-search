@@ -43,9 +43,9 @@ export default class SearchBox extends Vue {
   inputSearch = "";
 
   isAlphaNum(e: KeyboardEvent): boolean | void {
-    if (/[A-z0-9.\'!\- ]/gi.test(e.key) && !this.allowSpecialCharacters)
-      return true;
-    e.preventDefault();
+    if (!/[A-z0-9.'!\- ]/gi.test(e.key) && !this.allowSpecialCharacters)
+      e.preventDefault();
+    return true;
   }
 
   searchMedia(): void {
